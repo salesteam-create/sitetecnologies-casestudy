@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -l \"SITE Technologies Case study-handoff.zip\")",
+      "Bash(unzip -l \"sitetechnologies design system.zip\")",
+      "Bash(python -c \"import fitz; doc = fitz.open\\('Case-Study-SITE-1.pdf'\\); print\\('pages:', doc.page_count\\); [print\\(f'page {i}: {len\\(p.get_images\\(full=True\\)\\)} images'\\) for i, p in enumerate\\(doc\\)]\")",
+      "Bash(pip install *)",
+      "Bash(python -c ' *)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

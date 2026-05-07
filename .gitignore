@@ -1,0 +1,7 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Working folders (duplicate of zipped sources)
+handoff-extracted/
+design-system/

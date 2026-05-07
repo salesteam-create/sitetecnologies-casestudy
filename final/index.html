@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1920" />
+<title>SITE Technologies / Case Study — CenterPoint Properties</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-soft:#f5f4f0;
+    --ink:#0f1110;
+    --ink-soft:#383838;
+    --muted:#6b7280;
+    --rule:#e6e4df;
+    --rule-strong:#0f1110;
+
+    --black:#0a0a0a;
+    --on-dark:#ffffff;
+    --on-dark-soft:rgba(255,255,255,0.82);
+    --on-dark-mute:rgba(255,255,255,0.55);
+    --on-dark-rule:rgba(255,255,255,0.18);
+
+    /* SITE green */
+    --green:#34A24B;
+    --green-dark:#287C3A;
+
+    --gutter:40px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  [id]{scroll-margin-top:24px}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .page{width:1920px;margin:0 auto}
+  @media (max-width:1920px){
+    .page{transform-origin:top left}
+  }
+
+  /* ---------- typography primitives ---------- */
+  .mono{font-family:'JetBrains Mono', ui-monospace, monospace;font-weight:600;font-size:11px;line-height:1;letter-spacing:.20em;text-transform:uppercase}
+  .label{font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;line-height:1;letter-spacing:.20em;text-transform:uppercase}
+  .lede{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:62ch}
+  .lede-dark{font-size:17px;line-height:1.6;color:var(--on-dark-soft);max-width:64ch}
+  .small{font-size:13px;line-height:1.55;color:var(--muted)}
+
+  /* ---------- SITE mark (inline SVG class) ---------- */
+  .site-mark{display:inline-block}
+  .site-mark svg{display:block}
+
+  /* ---------- top status bar ---------- */
+  .topbar{height:34px;background:#000;color:#fff;display:flex;align-items:center;padding:0 var(--gutter);font-family:'JetBrains Mono', monospace;font-size:11px;letter-spacing:.20em;text-transform:uppercase}
+  .topbar .col{display:flex;align-items:center;gap:12px}
+  .topbar .dot{width:6px;height:6px;background:var(--green);display:inline-block;border-radius:1px}
+  .topbar .col.center{flex:1;justify-content:center;color:rgba(255,255,255,.78)}
+  .topbar .col.right{color:rgba(255,255,255,.7)}
+
+  /* ---------- main header ---------- */
+  .header{height:84px;display:flex;align-items:center;padding:0 var(--gutter);border-bottom:1px solid rgba(255,255,255,.08);background:#0a0a0a;color:#fff}
+  .brand{display:flex;align-items:center;gap:18px}
+  .brand img.logo{height:36px;width:auto;display:block}
+  .brand-sub{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:rgba(255,255,255,.55);text-transform:uppercase;margin-left:18px;border-left:1px solid rgba(255,255,255,.18);padding-left:18px}
+  .nav{display:flex;align-items:center;gap:36px;margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.20em;text-transform:uppercase}
+  .nav a{color:rgba(255,255,255,.55)}
+  .nav a.active{color:#fff}
+  .pill-cta{height:42px;padding:0 20px;background:var(--green);color:#fff;display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-left:28px;transition:background .18s ease}
+  .pill-cta:hover{background:var(--green-dark)}
+  .pill-cta svg{width:12px;height:12px}
+
+  /* ---------- section chrome ---------- */
+  .sec-marker{height:62px;display:flex;align-items:flex-end;padding:0 var(--gutter) 18px;gap:18px}
+  .sec-marker .num{font-weight:700;font-size:11px;letter-spacing:.20em;text-transform:uppercase;color:var(--muted)}
+  .sec-marker .title{font-weight:700;font-size:11px;letter-spacing:.20em;text-transform:uppercase;color:var(--ink)}
+  .sec-marker.dark{background:#000;color:#fff}
+  .sec-marker.dark .num{color:rgba(255,255,255,.55)}
+  .sec-marker.dark .title{color:#fff}
+  .rule{height:1px;background:var(--rule);width:100%}
+  .rule-dark{height:1px;background:var(--on-dark-rule);width:100%}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:720px;background:#000;color:#fff;overflow:hidden}
+  .hero .bg{position:absolute;inset:0;background:url('assets/aerial-blueprint.jpg') center/cover no-repeat;filter:grayscale(.35) contrast(1.05) brightness(.5)}
+  .hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.30) 35%,rgba(0,0,0,.65) 100%)}
+  .hero .scrim-grid{position:absolute;inset:0;background-image:linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px);background-size:120px 100%}
+  .hero .green-line{position:absolute;left:0;right:0;top:0;height:3px;background:var(--green)}
+
+  .hero .top-strip{position:absolute;left:var(--gutter);right:var(--gutter);top:38px;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff}
+  .hero .top-strip .left{display:flex;align-items:center;gap:12px}
+  .hero .top-strip .left .dot{width:6px;height:6px;background:var(--green)}
+  .hero .top-strip .right{color:rgba(255,255,255,.78)}
+
+  .hero .case-tag{position:absolute;left:var(--gutter);top:260px;font-weight:700;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green)}
+  .hero .h-title{position:absolute;left:var(--gutter);top:305px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:128px;line-height:.93;letter-spacing:-.04em;max-width:1500px}
+  .hero .h-title .green{color:var(--green)}
+  .hero .h-title .bl{color:var(--on-dark-soft)}
+
+  /* ---------- intro band (between hero and overview) ---------- */
+  .intro-band{position:relative;background:#000;color:#fff;border-top:1px solid rgba(255,255,255,.10);overflow:hidden}
+  .intro-band .bg{position:absolute;inset:0;background:url('assets/aerial-blueprint.jpg') center/cover no-repeat;filter:grayscale(.6) contrast(1.05) brightness(.28);opacity:.55}
+  .intro-band .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.92) 100%)}
+  .intro-band .inner{position:relative;padding:64px var(--gutter) 64px;display:flex;justify-content:space-between;align-items:center;gap:60px}
+  .intro-band .desc{max-width:620px;font-size:17px;line-height:1.6;color:rgba(255,255,255,.88)}
+  .intro-band .stat-row{display:flex}
+  .intro-band .stat-cell{width:300px;padding:24px 22px 24px;background:#0a0a0a;border-right:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;gap:14px;justify-content:space-between;height:130px;position:relative}
+  .intro-band .stat-cell:first-child{border-left:1px solid rgba(255,255,255,.10)}
+  .intro-band .stat-cell:last-child{border-right:1px solid rgba(255,255,255,.10)}
+  .intro-band .stat-cell::before{content:"";position:absolute;left:0;top:0;width:28px;height:2px;background:var(--green)}
+  .intro-band .stat-cell .num{font-weight:700;font-size:36px;letter-spacing:-.025em;line-height:1}
+  .intro-band .stat-cell .lbl{font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+  /* ---------- generic content blocks ---------- */
+  .section-pad{padding:120px var(--gutter) 110px}
+  .h2{font-family:'DM Sans',sans-serif;font-weight:700;font-size:88px;line-height:.96;letter-spacing:-.034em;color:var(--ink);max-width:1100px}
+  .h2.on-dark{color:#fff}
+  .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+  .lead-grid p{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:60ch}
+
+  /* metric grid (2 rows × 2 cols on light) */
+  .metric-grid{margin-top:68px;border-top:1px solid var(--rule-strong);border-left:1px solid var(--rule-strong);display:grid;grid-template-columns:repeat(4,1fr)}
+  .metric-cell{border-right:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);padding:30px 32px 36px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+  .metric-cell .idx{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .metric-cell .num{font-weight:700;font-size:64px;line-height:.95;letter-spacing:-.03em}
+  .metric-cell .num small{font-size:30px;letter-spacing:-.01em;color:var(--muted)}
+  .metric-cell .lbl{font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
+  .metric-cell .desc{font-size:13px;line-height:1.55;color:var(--muted);max-width:34ch;margin-top:6px}
+
+  .metric-grid.on-dark{border-color:rgba(255,255,255,.18)}
+  .metric-grid.on-dark .metric-cell{border-color:rgba(255,255,255,.18)}
+  .metric-grid.on-dark .metric-cell .idx{color:rgba(255,255,255,.55)}
+  .metric-grid.on-dark .metric-cell .num,.metric-grid.on-dark .metric-cell .lbl{color:#fff}
+  .metric-grid.on-dark .metric-cell .desc{color:rgba(255,255,255,.65)}
+
+  /* ---------- problem & solution ---------- */
+  .problem{background:#fff;color:var(--ink);position:relative}
+  .solution{background:#000;color:#fff;position:relative}
+  .solution .sec-marker .num,.solution .sec-marker .title{color:#fff}
+
+  .two-col{display:grid;grid-template-columns:811px 1fr;gap:80px;align-items:start}
+  .two-col-flip{display:grid;grid-template-columns:1fr 811px;gap:80px;align-items:start}
+  .stack-32{display:flex;flex-direction:column;gap:32px}
+  .stack-24{display:flex;flex-direction:column;gap:24px}
+  .stack-16{display:flex;flex-direction:column;gap:16px}
+
+  /* solution image plate */
+  .image-plate{width:911px;height:564px;overflow:hidden;background:#1a1a1a;position:relative;outline:1px solid rgba(255,255,255,.1)}
+  .image-plate img{width:100%;height:100%;object-fit:cover}
+  .image-plate .annot{position:absolute;left:18px;bottom:18px;display:flex;gap:14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+  .image-plate .annot span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--green);margin-right:8px;transform:translateY(-1px)}
+  .image-plate .corner-mark{position:absolute;top:18px;right:18px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+
+  /* feature pills under image */
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,.18);margin-top:48px}
+  .feature{padding:30px 28px 32px;border-right:1px solid rgba(255,255,255,.18);display:flex;flex-direction:column;gap:14px;position:relative}
+  .feature::before{content:"";position:absolute;left:0;top:-1px;width:36px;height:2px;background:var(--green)}
+  .feature:last-child{border-right:none}
+  .feature .ft-idx{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .feature .ft-title{font-weight:700;font-size:22px;letter-spacing:-.01em;line-height:1.18}
+  .feature .ft-desc{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.7);max-width:40ch}
+
+  /* ---------- pull quote ---------- */
+  .pullquote{padding:120px var(--gutter);background:#0a0a0a;color:#fff;border-top:1px solid rgba(255,255,255,.12)}
+  .pullquote .q{font-weight:600;font-size:54px;line-height:1.14;letter-spacing:-.022em;max-width:1500px}
+  .pullquote .q .open{color:var(--green);font-weight:700;font-size:54px;display:inline-block;transform:translateY(8px);margin-right:8px}
+  .pullquote .attrib{margin-top:48px;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.18);padding-top:28px}
+  .pullquote .attrib .who{font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;color:#fff}
+  .pullquote .attrib .role{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.20em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:8px}
+  .pullquote .attrib .meta{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.20em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+  /* ---------- impact (Smarter Planning) ---------- */
+  .impact{background:#fff;color:var(--ink);padding:120px var(--gutter) 110px}
+  .impact .benefit-grid{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule-strong)}
+  .impact .benefit{padding:40px 36px 44px;border-right:1px solid var(--rule);min-height:320px;display:flex;flex-direction:column;gap:18px;position:relative}
+  .impact .benefit::before{content:"";position:absolute;left:0;top:-1px;width:48px;height:3px;background:var(--green)}
+  .impact .benefit:last-child{border-right:none}
+  .impact .benefit .b-idx{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .impact .benefit .b-title{font-family:'DM Sans',sans-serif;font-weight:700;font-size:26px;letter-spacing:-.012em;line-height:1.18;color:var(--ink)}
+  .impact .benefit .b-desc{font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:36ch}
+  .impact .benefit .b-stat{margin-top:auto;font-weight:700;font-size:48px;letter-spacing:-.025em;color:var(--green-dark);line-height:1}
+  .impact .benefit .b-stat small{font-size:18px;color:var(--muted);font-weight:600}
+
+  /* secondary quote inline with image */
+  .quote-block{margin-top:90px;display:grid;grid-template-columns:1fr 480px;gap:60px;align-items:center;background:var(--bg-soft);padding:60px}
+  .quote-block .q2{font-family:'DM Sans',sans-serif;font-weight:600;font-size:30px;line-height:1.32;letter-spacing:-.012em;color:var(--ink)}
+  .quote-block .q2 .open{color:var(--green);font-weight:700}
+  .quote-block .who2{margin-top:32px;display:flex;flex-direction:column;gap:6px}
+  .quote-block .who2 .nm{font-weight:700;font-size:14px;letter-spacing:.02em}
+  .quote-block .who2 .rl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.20em;color:var(--muted);text-transform:uppercase}
+  .quote-block .img{width:480px;height:320px;background:#1a1a1a;overflow:hidden;position:relative}
+  .quote-block .img img{width:100%;height:100%;object-fit:cover}
+  .quote-block .img .cap{position:absolute;left:14px;bottom:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+  .quote-block .img .cap::before{content:"";display:inline-block;width:6px;height:6px;background:var(--green);margin-right:8px;transform:translateY(-1px)}
+
+  /* ---------- roadmap (what's next from the PDF) ---------- */
+  .roadmap{background:#fff;color:var(--ink);padding:120px var(--gutter) 130px;border-top:1px solid var(--rule)}
+  .roadmap .rm-grid{margin-top:60px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+  .roadmap .rm-card{padding:36px 36px 40px;background:var(--bg-soft);border-left:3px solid var(--green);display:flex;flex-direction:column;gap:16px;min-height:240px}
+  .roadmap .rm-card .rm-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-dark)}
+  .roadmap .rm-card h3{margin:0;font-family:'DM Sans',sans-serif;font-weight:700;font-size:30px;letter-spacing:-.018em;line-height:1.18;color:var(--ink)}
+  .roadmap .rm-card p{margin:0;font-size:15.5px;line-height:1.6;color:var(--ink-soft);max-width:48ch}
+
+  /* ---------- impact band (pre-footer CTA) ---------- */
+  .next-band{position:relative;min-height:620px;background:#000;color:#fff;overflow:hidden}
+  .next-band .bg{position:absolute;inset:0;background:url('assets/hero-aerial.jpg') center/cover no-repeat;filter:grayscale(.6) contrast(1.05) brightness(.45)}
+  .next-band .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.62),rgba(0,0,0,.85))}
+  .next-band .green-line{position:absolute;left:0;right:0;top:0;height:3px;background:var(--green)}
+  .next-band .inner{position:relative;padding:74px var(--gutter) 60px;display:flex;flex-direction:column;gap:42px}
+  .next-band .lbl{font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green)}
+  .next-band .head{font-weight:700;font-size:80px;line-height:.96;letter-spacing:-.032em;max-width:1402px}
+  .next-band .ctas{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .next-band a.btn{display:inline-flex;height:60px;padding:0 32px;align-items:center;justify-content:space-between;gap:60px;font-weight:700;font-size:12px;letter-spacing:.20em;text-transform:uppercase;transition:transform .18s ease}
+  .next-band a.btn.primary{background:var(--green);color:#fff}
+  .next-band a.btn.primary:hover{background:var(--green-dark)}
+  .next-band a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
+  .next-band a.btn.ghost:hover{border-color:#fff}
+  .next-band a.btn svg{width:14px;height:14px}
+  .next-band .meta{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.18);padding-top:24px;margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.20em;text-transform:uppercase;color:rgba(255,255,255,.7);flex-wrap:wrap;gap:24px}
+
+  /* ---------- footer ---------- */
+  .footer{background:#0a0a0a;color:#fff;padding:80px var(--gutter) 0}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:60px;padding-bottom:64px;border-bottom:1px solid rgba(255,255,255,.14)}
+  .footer .brandbox{display:flex;flex-direction:column;gap:22px}
+  .footer .brandbox .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .footer .brandbox .copy{font-size:14px;line-height:1.55;color:rgba(255,255,255,.78);max-width:32ch}
+  .footer h4{margin:0 0 22px;font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+  .footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+  .footer li,.footer .addr{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.85)}
+  .footer .addr a{color:#fff;border-bottom:1px solid rgba(255,255,255,.3)}
+  .footer .legal{padding:26px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,.55);flex-wrap:wrap;gap:16px}
+  .footer .legal .right{display:flex;gap:32px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ Top status strip ============ -->
+  <div class="topbar" data-screen-label="00 Topbar">
+    <div class="col"><span class="dot"></span>Case Study · CenterPoint Properties</div>
+    <div class="col center">Sector / Industrial — Logistics &amp; Distribution</div>
+    <div class="col right">Aerial Inventory Intelligence</div>
+  </div>
+
+  <!-- ============ Header ============ -->
+  <header class="header">
+    <a href="#" class="brand" aria-label="SITE Technologies">
+      <img class="logo" src="assets/site-logo-wordmark.png" alt="SITE Technologies"/>
+      <div class="brand-sub">Aerial Inventory Intelligence</div>
+    </a>
+    <nav class="nav">
+      <a href="#overview">Overview</a>
+      <a href="#solution">Solution</a>
+      <a href="#impact">Impact</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#next">Demo</a>
+    </nav>
+    <a class="pill-cta" href="#next">Request Demo
+      <svg viewBox="0 0 12 12" stroke="#fff" fill="none" stroke-width="1.5"><path d="M0 6 H11 M6 1 L11 6 L6 11"/></svg>
+    </a>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" data-screen-label="01 Hero">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="scrim-grid" aria-hidden="true"></div>
+    <div class="green-line" aria-hidden="true"></div>
+
+    <div class="top-strip">
+      <div class="left"><span class="dot"></span>Case Study · CenterPoint Properties</div>
+      <div class="right">40 Sites · 16M+ ft² · Industrial Portfolio</div>
+    </div>
+
+    <div class="case-tag">Case Study</div>
+    <h1 class="h-title">
+      Inventory, <span class="green">verified</span><br/>
+      <span class="bl">from above.</span>
+    </h1>
+  </section>
+
+  <!-- ============ Intro band (description + stats) ============ -->
+  <section class="intro-band" data-screen-label="01b Intro band">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="inner">
+      <p class="desc">CenterPoint Properties uses SITE’s Inventory AI and drone imagery to verify property-level details across a 16-million-square-foot industrial portfolio — saving hours of manual site work and improving accuracy in marketing and leasing materials.</p>
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="num">16M+ ft²</div>
+          <div class="lbl">Portfolio Scope</div>
+        </div>
+        <div class="stat-cell">
+          <div class="num">40 Sites</div>
+          <div class="lbl">Industrial Properties</div>
+        </div>
+        <div class="stat-cell">
+          <div class="num">3–4 hrs</div>
+          <div class="lbl">Saved per Property</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 01 / Overview marker ============ -->
+  <div id="overview" class="sec-marker"><span class="num">01 / Overview</span><span class="title">The Problem</span></div>
+  <div class="rule"></div>
+
+  <!-- ============ Problem section ============ -->
+  <section class="problem" data-screen-label="02 The Problem">
+    <div class="section-pad">
+      <div class="lead-grid">
+        <div class="stack-32">
+          <div class="mono" style="color:var(--green-dark)">The Problem</div>
+          <h2 class="h2">Manual inventory.<br/>Modern leasing&nbsp;velocity.</h2>
+        </div>
+        <div class="stack-24">
+          <p>CenterPoint recognized that legacy inventory tracking — handwritten notes, visual estimates, and unstructured photo documentation — was slowing down workflows and creating inconsistencies across a growing portfolio.</p>
+          <p>These legacy processes, while once effective, no longer met the speed and accuracy demands of today's leasing environment. The team needed a modern solution to access accurate, high-resolution property data remotely, reduce administrative burden, and support timely, trustworthy marketing materials.</p>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-cell">
+          <div class="idx">01</div>
+          <div class="num">40</div>
+          <div>
+            <div class="lbl">Industrial Sites</div>
+            <div class="desc">Tracked across the CenterPoint portfolio under a single property management workflow.</div>
+          </div>
+        </div>
+        <div class="metric-cell">
+          <div class="idx">02</div>
+          <div class="num">16M<small>&nbsp;ft²</small></div>
+          <div>
+            <div class="lbl">Square Footage</div>
+            <div class="desc">Industrial space requiring continuous, accurate inventory for leasing &amp; marketing collateral.</div>
+          </div>
+        </div>
+        <div class="metric-cell">
+          <div class="idx">03</div>
+          <div class="num">Pen<small>&nbsp;+ paper</small></div>
+          <div>
+            <div class="lbl">Source of Record</div>
+            <div class="desc">Inventory captured in handwritten notes and unstructured photos — fragile, hard to share.</div>
+          </div>
+        </div>
+        <div class="metric-cell">
+          <div class="idx">04</div>
+          <div class="num">5+</div>
+          <div>
+            <div class="lbl">Asset Categories</div>
+            <div class="desc">Dock doors, ADA spaces, parking stalls, trailer pads, safety infrastructure — all manual.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 / Solution marker ============ -->
+  <div id="solution" class="sec-marker dark"><span class="num">02 / Solution</span><span class="title">Aerial inventory intelligence</span></div>
+
+  <!-- ============ Solution section ============ -->
+  <section class="solution" data-screen-label="03 The Solution">
+    <div class="section-pad" style="padding-bottom:40px">
+      <div class="two-col-flip">
+        <div class="stack-32">
+          <div class="mono" style="color:var(--green)">The Solution</div>
+          <h2 class="h2 on-dark">High-resolution<br/>truth, on demand.</h2>
+          <p class="lede-dark">SITE's Inventory AI delivered drone imagery and AI-assisted identification of critical industrial features — letting the CenterPoint team verify counts remotely, with confidence, without waiting on a manual site visit.</p>
+          <p class="lede-dark">A <strong style="color:#fff;font-weight:700">Navigate by Time</strong> layer compares any site against its own past, building greater confidence in how each property has evolved over time.</p>
+        </div>
+        <div>
+          <div class="image-plate">
+            <img src="assets/solution-image.png" alt="SITE Inventory AI: aerial capture with detected ADA spaces, hydrants and trailer parking" loading="lazy"/>
+            <div class="corner-mark">Inventory AI · Live capture</div>
+            <div class="annot">
+              <span>ADA Spaces</span>
+              <span style="color:rgba(255,255,255,.7)">Trailer Parking</span>
+              <span style="color:rgba(255,255,255,.7)">Safety Infrastructure</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="ft-idx">F.01 / Detection</div>
+          <div class="ft-title">Car &amp; ADA<br/>parking spaces</div>
+          <div class="ft-desc">Automatic counts of standard and ADA-compliant stalls across the entire site footprint, verifiable from desk.</div>
+        </div>
+        <div class="feature">
+          <div class="ft-idx">F.02 / Detection</div>
+          <div class="ft-title">Trailer / truck<br/>parking stalls</div>
+          <div class="ft-desc">Trailer pads and truck staging areas surfaced from drone imagery — critical inventory for leasing logistics tenants.</div>
+        </div>
+        <div class="feature">
+          <div class="ft-idx">F.03 / Detection</div>
+          <div class="ft-title">Safety infrastructure<br/>placement</div>
+          <div class="ft-desc">Hydrants, FDCs, bollards and other safety assets located, mapped and persistent across captures.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pull quote inside dark section -->
+    <div class="pullquote">
+      <div class="q"><span class="open">“</span>SITE's Inventory AI is a revolutionary tool that saves me valuable time by providing high-resolution images and enabling quick and accurate inventory assessments portfolio-wide.<span style="color:var(--green)">”</span></div>
+      <div class="attrib">
+        <div>
+          <div class="who">Sara Creech</div>
+          <div class="role">Property Manager · CenterPoint Properties</div>
+        </div>
+        <div class="meta">Verbatim · CenterPoint Case Study</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 / Impact marker ============ -->
+  <div id="impact" class="sec-marker"><span class="num">03 / Impact</span><span class="title">Smarter Planning</span></div>
+  <div class="rule"></div>
+
+  <!-- ============ Impact / Smarter Planning section ============ -->
+  <section class="impact" data-screen-label="04 Impact">
+    <div class="lead-grid">
+      <div class="stack-32">
+        <div class="mono" style="color:var(--green-dark)">Impact on the Business</div>
+        <h2 class="h2">Smarter planning.<br/>Sharper marketing.</h2>
+      </div>
+      <div class="stack-24">
+        <p class="lede">Sara Creech, a Property Manager at CenterPoint, oversees over 16 million square feet of industrial space across 40 sites — maintaining accurate, up-to-date property data critical to leasing and marketing efforts. SITE replaces manual workflows with a single visual record her team can trust, before, during and after every visit.</p>
+      </div>
+    </div>
+
+    <div class="benefit-grid">
+      <div class="benefit">
+        <div class="b-idx">01 / Pre-visit</div>
+        <div class="b-title">Faster prep, automated post-visit reporting</div>
+        <div class="b-desc">Surfaces key asset data in advance of every visit and automates post-visit reporting — letting property managers focus more time on revenue-generating activity.</div>
+        <div class="b-stat">3–4 <small>hrs saved / property</small></div>
+      </div>
+      <div class="benefit">
+        <div class="b-idx">02 / On-site</div>
+        <div class="b-title">Centralized, image-based property records</div>
+        <div class="b-desc">Streamlines property data collection and eliminates pen-and-paper inventory tracking and scattered photo documentation with a centralized digital record.</div>
+        <div class="b-stat">100%<small>&nbsp;digital record</small></div>
+      </div>
+      <div class="benefit">
+        <div class="b-idx">03 / Marketing</div>
+        <div class="b-title">Real-time, verified inventory in collateral</div>
+        <div class="b-desc">Up-to-date imagery enables accurate asset counts (parking, ADA, trailer) for more reliable, professional marketing and leasing materials prospects can trust.</div>
+        <div class="b-stat">↑<small>&nbsp;Credibility</small></div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <div>
+        <div class="q2"><span class="open">“</span>The SITE platform saves me time because I can access everything right from my desk — giving me the information I need before heading onsite. These efficiencies help me focus on revenue-generating activities like Capital Improvements and Asset Optimization.<span style="color:var(--green)">”</span></div>
+        <div class="who2">
+          <div class="nm">Sara Creech</div>
+          <div class="rl">Property Manager · CenterPoint Properties</div>
+        </div>
+      </div>
+      <div class="img">
+        <img src="assets/laptop-ui.jpg" alt="SITE Inventory AI on laptop showing aerial parking detection"/>
+        <div class="cap">SITE / Inventory AI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 / What's Next marker ============ -->
+  <div id="roadmap" class="sec-marker"><span class="num">04 / Roadmap</span><span class="title">What's next on the platform</span></div>
+  <div class="rule"></div>
+
+  <!-- ============ Roadmap section ============ -->
+  <section class="roadmap" data-screen-label="05 Roadmap">
+    <div class="lead-grid">
+      <div class="stack-32">
+        <div class="mono" style="color:var(--green-dark)">Active Development</div>
+        <h2 class="h2">Built with CenterPoint,<br/>shipping next.</h2>
+      </div>
+      <div class="stack-24">
+        <p class="lede">SITE is actively working with CenterPoint to enhance future functionality — further streamlining leasing workflows and the marketing prep behind every property page.</p>
+      </div>
+    </div>
+
+    <div class="rm-grid">
+      <div class="rm-card">
+        <div class="rm-tag">In development</div>
+        <h3>Automated directional breakdowns</h3>
+        <p>Counts split automatically by orientation — north, south, east, west — so leasing materials can describe each side of a property without a manual cross-reference.</p>
+      </div>
+      <div class="rm-card">
+        <div class="rm-tag">In development</div>
+        <h3>Dock door segmentation</h3>
+        <p>Per-bay dock door identification and grouping, mapping every loading position to its position in the building footprint — leasing-ready, on demand.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Next CTA band ============ -->
+  <section id="next" class="next-band" data-screen-label="06 Next">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="green-line" aria-hidden="true"></div>
+    <div class="inner">
+      <div class="lbl">05 / See more with SITE</div>
+      <h2 class="head">See your portfolio from above.<br/>Book a live walkthrough.</h2>
+      <div class="ctas">
+        <a class="btn primary" href="https://www.sitetechnologies.io/intro">
+          <span>Request a live demo</span>
+          <svg viewBox="0 0 12 12" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M0 6 H11 M6 1 L11 6 L6 11"/></svg>
+        </a>
+        <a class="btn ghost" href="https://bit.ly/SITE-overview">
+          <span>Watch a quick demo</span>
+          <svg viewBox="0 0 12 12" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M0 6 H11 M6 1 L11 6 L6 11"/></svg>
+        </a>
+      </div>
+      <div class="meta">
+        <span>info@sitetechnologies.io</span>
+        <span>(760) 636-2695</span>
+        <span>www.sitetechnologies.io</span>
+        <span>LinkedIn / @sitetechnologies</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Footer ============ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="brandbox">
+        <img src="assets/site-logo-wordmark.png" alt="SITE Technologies" style="height:42px;width:auto;display:block;align-self:flex-start;max-width:none"/>
+        <div class="tag">Aerial Inventory Intelligence</div>
+        <div class="copy">Drone imagery and AI-assisted property data for the people who lease, market and operate industrial real estate.</div>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul>
+          <li>Inventory AI</li>
+          <li>Navigate by Time</li>
+          <li>Drone Capture</li>
+          <li>Marketing-Ready Reports</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Industries</h4>
+        <ul>
+          <li>Industrial</li>
+          <li>Logistics &amp; Distribution</li>
+          <li>CRE Owners &amp; Operators</li>
+          <li>Brokerage</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="addr">
+          <a href="mailto:info@sitetechnologies.io">info@sitetechnologies.io</a><br/>
+          (760) 636-2695<br/>
+          <a href="https://www.sitetechnologies.io">www.sitetechnologies.io</a><br/>
+          <a href="https://www.sitetechnologies.io/intro">Request a demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 SITE Technologies · All rights reserved</div>
+      <div class="right">
+        <span>Case Study</span><span>CenterPoint Properties</span><span>2026</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
